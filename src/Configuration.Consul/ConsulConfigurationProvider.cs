@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -15,7 +16,17 @@ namespace Configuration.Consul
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class ConsulConfigurationProvider : IConfigurationProvider
     {
+        private readonly string _consulUrl ;
         private Dictionary<string, string> _values = new Dictionary<string, string>();
+
+        public ConsulConfigurationProvider()
+        {
+            _consulUrl = "http://localhost:8500";
+        }
+        public ConsulConfigurationProvider(string ip)
+        {
+            _consulUrl = string.Format("http://{0}:8500", ip);
+        }
 
         public bool TryGet(string key, out string value)
         {
@@ -35,7 +46,7 @@ namespace Configuration.Consul
             _values[key] = value;
             using (var client = new HttpClient())
             {
-                var result = client.PutAsync("http://localhost:8500/v1/kv/" + key, new StringContent(value)).Result;
+                var result = client.PutAsync(_consulUrl + "/v1/kv/" + key, new StringContent(value)).Result;
             }
         }
 
@@ -52,7 +63,7 @@ namespace Configuration.Consul
             {
                 try
                 {
-                    var result = client.GetAsync("http://localhost:8500/v1/kv/?recurse").Result;
+                    var result = client.GetAsync(_consulUrl + "/v1/kv/?recurse").Result;
                     if (result.IsSuccessStatusCode)
                     {
                         var json = result.Content.ReadAsStringAsync().Result;

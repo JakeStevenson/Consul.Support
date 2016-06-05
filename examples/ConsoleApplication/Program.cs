@@ -11,7 +11,7 @@ namespace ConsoleApplication
 
             var builder = new ConfigurationBuilder();
             builder.AddJsonFile("appsettings.json").Build();
-            builder.Add(new ConsulConfigurationSource());
+            builder.AddConsulAgent("localhost");
 
             var config = builder.Build();
 

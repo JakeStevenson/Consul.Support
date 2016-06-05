@@ -20,7 +20,7 @@ namespace WebAPI
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .Add(new ConsulConfigurationSource());
+                .AddConsulAgent("localhost");
 
             Configuration = builder.Build();
         }
