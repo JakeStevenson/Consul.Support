@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -19,12 +18,12 @@ namespace Configuration.Consul
         private readonly string _consulUrl ;
         private Dictionary<string, string> _values = new Dictionary<string, string>();
 
-        public ConsulConfigurationProvider()
+        public ConsulConfigurationProvider(string ip = "")
         {
-            _consulUrl = "http://localhost:8500";
-        }
-        public ConsulConfigurationProvider(string ip)
-        {
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = "localhost";
+            }
             _consulUrl = string.Format("http://{0}:8500", ip);
         }
 
@@ -63,6 +62,7 @@ namespace Configuration.Consul
             {
                 try
                 {
+                    client.Timeout = TimeSpan.FromSeconds(5);
                     var result = client.GetAsync(_consulUrl + "/v1/kv/?recurse").Result;
                     if (result.IsSuccessStatusCode)
                     {

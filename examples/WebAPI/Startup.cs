@@ -1,4 +1,5 @@
-﻿using Configuration.Consul;
+﻿using System;
+using Configuration.Consul;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,12 +16,14 @@ namespace WebAPI
         //  fall back to the local appsettings.
         public Startup(IHostingEnvironment env)
         {
+            var consulIP = Environment.GetEnvironmentVariable("CONSUL_IP");
+
             var builder = new ConfigurationBuilder();
             builder
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddConsulAgent("localhost");
+                .AddConsulAgent(consulIP);
 
             Configuration = builder.Build();
         }

@@ -8,11 +8,11 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            var consulIP = Environment.GetEnvironmentVariable("CONSUL_IP");
 
             var builder = new ConfigurationBuilder();
             builder.AddJsonFile("appsettings.json").Build();
-            builder.AddConsulAgent("localhost");
-
+            builder.AddConsulAgent(consulIP);
             var config = builder.Build();
 
             var section = config.GetSection("SampleConfiguration");

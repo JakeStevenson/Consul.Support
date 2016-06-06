@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Configuration.Consul</id>
+    <version>0.0.0.1</version>
+    <authors>jakestevenson</authors>
+    <owners>jakestevenson</owners>
+    <licenseUrl>https://github.com/JakeStevenson/Consul.Support/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/JakeStevenson/Consul.Support/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ConfigurationProvider that gets values from Consul KV</description>
+    <releaseNotes>Initial build</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>.NETCore</tags>
+  </metadata>
+</package>
