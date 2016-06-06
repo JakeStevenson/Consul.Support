@@ -14,7 +14,7 @@ namespace WebAPI
     {
         //We will get our configuration from the Consul cluster first, but if that faile
         //  fall back to the local appsettings.
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var consulIP = Environment.GetEnvironmentVariable("CONSUL_IP");
 
@@ -23,7 +23,7 @@ namespace WebAPI
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddConsulAgent(consulIP);
+                .AddConsulAgent(consulIP, loggerFactory);
 
             Configuration = builder.Build();
         }
@@ -37,7 +37,6 @@ namespace WebAPI
             services.AddOptions();
 
             services.Configure<ValuesControllerSettings>(Configuration.GetSection("SampleConfiguration"));
-
 
             services.AddMvc();
         }

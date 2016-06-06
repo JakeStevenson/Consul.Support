@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
 namespace Configuration.Consul
@@ -15,11 +16,19 @@ namespace Configuration.Consul
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class ConsulConfigurationProvider : IConfigurationProvider
     {
-        private readonly string _consulUrl ;
+        private readonly string _consulUrl;
         private Dictionary<string, string> _values = new Dictionary<string, string>();
+        private readonly ILogger _logger;
 
-        public ConsulConfigurationProvider(string ip = "")
+        public ConsulConfigurationProvider(string ip = "", ILoggerFactory loggerFactory = null)
         {
+            //If we weren't given a logger by DI, then create a dumb one.
+            if (loggerFactory == null)
+            {
+                loggerFactory = new LoggerFactory();
+            }
+            _logger = loggerFactory.CreateLogger<ConsulConfigurationProvider>();
+
             if (string.IsNullOrEmpty(ip))
             {
                 ip = "localhost";
@@ -34,6 +43,7 @@ namespace Configuration.Consul
                 value = _values[key];
                 return true;
             }
+            _logger.LogDebug("Requested key " + key + " not found.");
             value = string.Empty;
             return false;
         }
@@ -58,6 +68,7 @@ namespace Configuration.Consul
         {
             //Here we want to actually load up all the information available from consul
             //  and cache it in a dictionary for quicker use
+            _logger.LogInformation("Loading settings from Consul cluster at " + _consulUrl);
             using (var client = new HttpClient())
             {
                 try
@@ -74,8 +85,9 @@ namespace Configuration.Consul
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    _logger.LogWarning("Unable to reach consul cluster specified at " + _consulUrl);
                     return;
                 }
 
