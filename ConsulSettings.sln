@@ -5,18 +5,35 @@ VisualStudioVersion = 15.0.25920.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Consul", "src\Configuration.Consul\Configuration.Consul.csproj", "{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{750C33EB-00CD-4E3D-8ACD-D7A86510A2AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|x64.ActiveCfg = Debug|x64
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|x64.Build.0 = Debug|x64
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|x86.ActiveCfg = Debug|x86
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Debug|x86.Build.0 = Debug|x86
 		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|x64.ActiveCfg = Release|x64
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|x64.Build.0 = Release|x64
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|x86.ActiveCfg = Release|x86
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841} = {750C33EB-00CD-4E3D-8ACD-D7A86510A2AF}
 	EndGlobalSection
 EndGlobal
