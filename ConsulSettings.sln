@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{26
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "examples\ConsoleApplication\ConsoleApplication.csproj", "{D0C75D3F-E8BF-4528-833C-D4982321375F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "examples\WebAPI\WebAPI.csproj", "{3BB52C1A-0C40-4F24-9C2E-609698398EE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,18 @@ Global
 		{D0C75D3F-E8BF-4528-833C-D4982321375F}.Release|x64.Build.0 = Release|Any CPU
 		{D0C75D3F-E8BF-4528-833C-D4982321375F}.Release|x86.ActiveCfg = Release|Any CPU
 		{D0C75D3F-E8BF-4528-833C-D4982321375F}.Release|x86.Build.0 = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|x64.Build.0 = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|x64.ActiveCfg = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|x64.Build.0 = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5FDF4FCB-C744-4DDC-96A9-422CBEBB4841} = {750C33EB-00CD-4E3D-8ACD-D7A86510A2AF}
 		{D0C75D3F-E8BF-4528-833C-D4982321375F} = {26D43AAB-BC52-4587-8A79-111EE2943AED}
+		{3BB52C1A-0C40-4F24-9C2E-609698398EE9} = {26D43AAB-BC52-4587-8A79-111EE2943AED}
 	EndGlobalSection
 EndGlobal
