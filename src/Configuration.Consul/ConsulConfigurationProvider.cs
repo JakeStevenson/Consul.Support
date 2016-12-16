@@ -19,11 +19,11 @@ namespace Configuration.Consul
         private readonly string _consulUrl;
         private Dictionary<string, string> _values = new Dictionary<string, string>();
         private readonly ILogger _logger;
-	
-	//Ugly hack because often the configurationprovider loads BEFORE logging.  We save off connection issues
-	//So we can report them again later
+
+        //Ugly hack because often the configurationprovider loads BEFORE logging.  We save off connection issues
+        //So we can report them again later
         private bool _ableToConnect;
-	private Exception _connectionError;
+        private Exception _connectionError;
 
         public ConsulConfigurationProvider(string ip = "", ILoggerFactory loggerFactory = null)
         {
@@ -66,7 +66,7 @@ namespace Configuration.Consul
                 catch (Exception ex)
                 {
                     _logger.LogWarning("Unable to reach consul cluster specified at " + _consulUrl);
-		    _connectionError = ex;
+                    _connectionError = ex;
                     return;
                 }
             }
@@ -83,9 +83,10 @@ namespace Configuration.Consul
             if (!_ableToConnect)
             {
                 _logger.LogDebug("Never connected to consul agent at " + _consulUrl);
-		if(_connectionError!=null){
-			_logger.LogDebug(_connectionError.Message);
-		}
+                if (_connectionError != null)
+                {
+                    _logger.LogDebug(_connectionError.Message);
+                }
             }
             value = string.Empty;
             return false;
@@ -93,7 +94,7 @@ namespace Configuration.Consul
 
         public void Set(string key, string value)
         {
-            key = key.Replace(':', '/'); 
+            key = key.Replace(':', '/');
 
             _values[key] = value;
             using (var client = new HttpClient())
@@ -122,7 +123,7 @@ namespace Configuration.Consul
         private static string Segment(string key, int prefixLength)
         {
             var indexOf = key.IndexOf(ConfigurationPath.KeyDelimiter, prefixLength, StringComparison.OrdinalIgnoreCase);
-            var ret =  indexOf < 0 ? key.Substring(prefixLength) : key.Substring(prefixLength, indexOf - prefixLength);
+            var ret = indexOf < 0 ? key.Substring(prefixLength) : key.Substring(prefixLength, indexOf - prefixLength);
             return ret;
         }
 
