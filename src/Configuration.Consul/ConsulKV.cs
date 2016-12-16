@@ -30,7 +30,11 @@ namespace Configuration.Consul
         {
             get
             {
-                return Encoding.UTF8.GetString(Convert.FromBase64String(Value));
+                if (Value != null)
+                {
+                    return Encoding.UTF8.GetString(Convert.FromBase64String(Value));
+                }
+                return null;
             }
         }
     }
